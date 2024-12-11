@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, DayPickerProps } from 'react-day-picker';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -54,13 +54,31 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        // Provide custom nav buttons here
+        Nav: ({ onPreviousClick, onNextClick }) => (
+          <div className="flex items-center justify-between px-4">
+            <button
+              onClick={onPreviousClick}
+              className="h-7 w-7 flex items-center justify-center bg-transparent p-0 opacity-50 hover:opacity-100"
+              aria-label="Previous month"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={onNextClick}
+              className="h-7 w-7 flex items-center justify-center bg-transparent p-0 opacity-50 hover:opacity-100"
+              aria-label="Next month"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        ),
       }}
       {...props}
     />
   );
 }
+
 Calendar.displayName = 'Calendar';
 
 export { Calendar };

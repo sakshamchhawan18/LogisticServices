@@ -60,7 +60,7 @@ export default function DispatchPage() {
       const request = {
         origin: waypoints[0],
         destination: waypoints[waypoints.length - 1],
-        waypoints: waypoints.slice(1, -1).map(location => ({
+        waypoints: waypoints.slice(1, -1).map((location : string) => ({
           location,
           stopover: true
         })),
